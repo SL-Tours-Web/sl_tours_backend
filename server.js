@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 app.use('/api/destinations', destinationRoutes);
 app.use('/api/hotels', hotelRoutes);
 app.use('/api/packages', packageRoutes);
-
+app.use("/api/tours", toursRoutes);
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
