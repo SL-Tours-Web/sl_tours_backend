@@ -5,6 +5,7 @@ import cors from 'cors';
 import destinationRoutes from './routes/destinationRoutes.js';
 import hotelRoutes from './routes/hotelRoutes.js';
 import packageRoutes from './routes/packagesRoutes.js';
+import adminAuthRoutes from "./routes/adminAuth.js";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -19,9 +20,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+//connect admin routes
+
+app.use("/api/admin", adminAuthRoutes);
+
 // Root route to check if backend is running
 app.get('/', (req, res) => {
-    res.send('TourMithuru Backend is Running');
+    res.send('site Backend is Running');
 });
 
 // Mount the  routes
