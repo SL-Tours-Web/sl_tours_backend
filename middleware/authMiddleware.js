@@ -1,13 +1,18 @@
-// const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
-// module.exports = (req, res, next) => {
-//   const token = req.headers.authorization?.split(" ")[1];
-//   if (!token) return res.status(401).json({ message: "No token" });
+export default function authMiddleware(req, res, next) {
+	const authHeader = req.headers.authorization || req.headers.Authorization;
+	const token = authHeader && authHeader.startsWith("Bearer ")
+		? authHeader.split(" ")[1]
+		: null;
 
-//   try {
-//     jwt.verify(token, process.env.JWT_SECRET);
-//     next();
-//   } catch {
-//     res.status(401).json({ message: "Invalid token" });
-//   }
-// };
+	if (!token) return res.status(401).json({ message: "No token" });
+
+	try {
+		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+		req.adminId = decoded.id;
+		next();
+	} catch (err) {
+		return res.status(401).json({ message: "Invalid token" });
+	}
+}
