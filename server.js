@@ -6,6 +6,8 @@ import destinationRoutes from './routes/destinationRoutes.js';
 import hotelRoutes from './routes/hotelRoutes.js';
 import packageRoutes from './routes/packagesRoutes.js';
 import adminAuthRoutes from "./routes/adminAuth.js";
+import toursRoutes from './routes/TourRoutes.js';
+import categoryRoutes from './routes/categoryRoutes.js';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -26,14 +28,15 @@ app.use("/api/admin", adminAuthRoutes);
 
 // Root route to check if backend is running
 app.get('/', (req, res) => {
-    res.send('site Backend is Running');
+    res.send('Vibe Ceylon Tours Backend is Running');
 });
 
 // Mount the  routes
 app.use('/api/destinations', destinationRoutes);
+app.use('/api/categories', categoryRoutes);
 app.use('/api/hotels', hotelRoutes);
 app.use('/api/packages', packageRoutes);
-// app.use("/api/tours", toursRoutes);
+app.use('/api/tours', toursRoutes);
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
