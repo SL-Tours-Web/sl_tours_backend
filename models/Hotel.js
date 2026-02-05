@@ -10,10 +10,6 @@ const hotelSchema = new mongoose.Schema({
         ref: 'Destination',
         required: true,
     },
-    price: {
-        type: Number,
-        required: true,
-    },
     features: {
         type: [String],
         default: [],

@@ -1,31 +1,51 @@
 import mongoose from 'mongoose';
 
+const dayItinerarySchema = new mongoose.Schema({
+  day: {
+    type: Number,
+    required: true,
+  },
+  title: {
+    type: String,
+  },
+  activities: {
+    type: String,
+  },
+}, { _id: false });
+
 const packageSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-    price: {
-        type: Number,
-        required: true,
-    },
-    duration: {
-        type: String,
-        required: true,
-    },
-    destinations: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Destination',
-        required: true,
-    }],
-    transport: {
-        type: String,
-    },
-    accommodation: {
-        type: String,
-    },
+  name: {
+    type: String,
+    required: true,
+  },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
+    required: true,
+  },
+  duration: {
+    type: String,
+    required: true,
+  },
+  itinerary: [dayItinerarySchema],
+  destinations: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Destination',
+  }],
+  transport: {
+    type: String,
+  },
+  accommodation: {
+    type: String,
+  },
+  description: {
+    type: String,
+  },
+  image: {
+    type: String,
+  },
 }, {
-    timestamps: true,
+  timestamps: true,
 });
 
 const Package = mongoose.model('Package', packageSchema);
