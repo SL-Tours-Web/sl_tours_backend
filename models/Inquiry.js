@@ -6,7 +6,8 @@ const inquirySchema = new mongoose.Schema({
   whatsapp: { type: String, required: true, trim: true },
   country: { type: String, required: true, trim: true },
   packageInterested: { type: String, default: 'General Inquiry', trim: true },
-  travelDates: { type: String, trim: true },
+  travelStartDate: { type: String, trim: true },
+  travelEndDate: { type: String, trim: true },
   groupSize: { type: Number, default: 1 },
   message: { type: String, trim: true },
   status: {

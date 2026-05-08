@@ -21,7 +21,8 @@ const sendNotificationEmail = async (inquiry) => {
           <tr><td style="padding:8px 0;color:#666;"><strong>WhatsApp</strong></td><td style="padding:8px 0;"><a href="https://wa.me/${inquiry.whatsapp.replace(/\D/g,'')}" style="color:#25D366;font-weight:bold;">${inquiry.whatsapp}</a></td></tr>
           <tr><td style="padding:8px 0;color:#666;"><strong>Country</strong></td><td style="padding:8px 0;color:#1a1a1a;">${inquiry.country}</td></tr>
           <tr><td style="padding:8px 0;color:#666;"><strong>Package</strong></td><td style="padding:8px 0;color:#1a1a1a;">${inquiry.packageInterested}</td></tr>
-          <tr><td style="padding:8px 0;color:#666;"><strong>Travel Dates</strong></td><td style="padding:8px 0;color:#1a1a1a;">${inquiry.travelDates || '—'}</td></tr>
+          <tr><td style="padding:8px 0;color:#666;"><strong>Travel Start</strong></td><td style="padding:8px 0;color:#1a1a1a;">${inquiry.travelStartDate || '—'}</td></tr>
+          <tr><td style="padding:8px 0;color:#666;"><strong>Travel End</strong></td><td style="padding:8px 0;color:#1a1a1a;">${inquiry.travelEndDate || '—'}</td></tr>
           <tr><td style="padding:8px 0;color:#666;"><strong>Group Size</strong></td><td style="padding:8px 0;color:#1a1a1a;">${inquiry.groupSize} person(s)</td></tr>
         </table>
         <div style="margin-top:20px;padding:16px;background:#f9f5ee;border-radius:6px;border-left:4px solid #c9a84c;">
@@ -49,11 +50,11 @@ const sendNotificationEmail = async (inquiry) => {
 
 export const createInquiry = async (req, res) => {
   try {
-    const { fullName, email, whatsapp, country, packageInterested, travelDates, groupSize, message } = req.body;
+    const { fullName, email, whatsapp, country, packageInterested, travelStartDate, travelEndDate, groupSize, message } = req.body;
     if (!fullName || !email || !whatsapp || !country) {
       return res.status(400).json({ success: false, message: 'Name, email, WhatsApp and country are required' });
     }
-    const inquiry = await Inquiry.create({ fullName, email, whatsapp, country, packageInterested, travelDates, groupSize, message });
+    const inquiry = await Inquiry.create({ fullName, email, whatsapp, country, packageInterested, travelStartDate, travelEndDate, groupSize, message });
     sendNotificationEmail(inquiry).catch(err => console.error('Email notification failed:', err));
     res.status(201).json({ success: true, message: 'Inquiry submitted successfully', data: inquiry });
   } catch (err) {
