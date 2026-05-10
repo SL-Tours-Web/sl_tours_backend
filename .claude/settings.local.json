@@ -11,10 +11,16 @@
       "WebFetch(domain:bungalowwebdesign.com)",
       "WebFetch(domain:kijo.london)",
       "WebFetch(domain:www.maxayo.com)",
-      "WebFetch(domain:seahawkmedia.com)"
+      "WebFetch(domain:seahawkmedia.com)",
+      "Bash(New-Item -ItemType Directory -Force \"d:\\\\SL-Tours\\\\sl_tours_frontend\\\\public\\\\images\\\\tours\")",
+      "Bash(New-Item -ItemType Directory -Force \"d:\\\\SL-Tours\\\\sl_tours_frontend\\\\public\\\\images\\\\destinations\")",
+      "Bash(New-Item -ItemType Directory -Force \"d:\\\\SL-Tours\\\\sl_tours_frontend\\\\public\\\\images\\\\banners\")",
+      "Bash(git restore *)",
+      "Bash(git mv *)"
     ],
     "additionalDirectories": [
-      "d:\\SL-Tours"
+      "d:\\SL-Tours",
+      "d:\\SL-Tours\\sl_tours_frontend\\public\\images"
     ]
   }
 }
