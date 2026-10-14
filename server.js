@@ -29,7 +29,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/admin', adminAuthRoutes);
 
-app.get('/', (req, res) => res.send('Vibe Ceylon Tours Backend is Running'));
+app.get('/', (req, res) => res.send('Sere Lanka Tours Backend is Running'));
 
 app.use('/api/destinations', destinationRoutes);
 app.use('/api/categories', categoryRoutes);

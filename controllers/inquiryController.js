@@ -12,7 +12,7 @@ const sendNotificationEmail = async (inquiry) => {
   const html = `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;border:1px solid #e0e0e0;border-radius:8px;overflow:hidden;">
       <div style="background:#1a4731;padding:24px 32px;">
-        <h2 style="color:#c9a84c;margin:0;font-size:22px;">New Inquiry — Vibe Ceylon Tours</h2>
+        <h2 style="color:#c9a84c;margin:0;font-size:22px;">New Inquiry — Sere Lanka Tours</h2>
       </div>
       <div style="padding:32px;">
         <table style="width:100%;border-collapse:collapse;">
@@ -35,13 +35,13 @@ const sendNotificationEmail = async (inquiry) => {
         </div>
       </div>
       <div style="padding:16px 32px;background:#f9f5ee;color:#999;font-size:12px;text-align:center;">
-        Vibe Ceylon Tours — Admin Notification
+        Sere Lanka Tours — Admin Notification
       </div>
     </div>
   `;
 
   await transporter.sendMail({
-    from: `"Vibe Ceylon Tours" <${process.env.EMAIL_USER}>`,
+    from: `"Sere Lanka Tours" <${process.env.EMAIL_USER}>`,
     to: process.env.EMAIL_USER,
     subject: `New Inquiry from ${inquiry.fullName} (${inquiry.country}) — ${inquiry.packageInterested}`,
     html,
